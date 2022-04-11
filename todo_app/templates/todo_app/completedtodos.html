@@ -1,0 +1,21 @@
+{% extends 'todo_app/base.html' %}
+
+{% block content %}
+
+<div align="center">
+    <h3>Completed todos!</h3>
+</div>
+
+<ul>
+    {% for todo in todos %}
+        <li>
+            <a href="{% url 'viewtodo' todo.id %}" class="list-group-item list-group-item-action" style="background-color: #f5f5f5;">
+                {% if todo.important %}<b>{% endif %}{{ todo.title }}{% if todo.important %}</b>{% endif %}
+                {% if todo.content %} - {{ todo.content }}{% endif %}
+                {{ todo.datecompleted|date:'M j Y H:i' }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
